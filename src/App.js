@@ -1,13 +1,14 @@
 import "./App.css";
 import Hello from "./components/Hello.js";
-import Welcome from "./components/Welcome.js";
+import styles from "./App.module.css";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <Hello />
-      <Hello />
-      <Welcome />
+      <div className={styles.box}>App-module</div>
+      <div className="box">App</div>
     </div>
   );
 }
