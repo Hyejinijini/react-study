@@ -1,7 +1,7 @@
 import "../../../assets/styles/Hello/Hello.css";
 import styles from "../../../assets/styles/Hello/Hello.module.css";
 
-const HelloExample = () => {
+const Css = () => {
   return (
     <div>
       {/* 1. 인라인 스타일
@@ -27,4 +27,4 @@ const HelloExample = () => {
   );
 };
 
-export default HelloExample;
+export default Css;
