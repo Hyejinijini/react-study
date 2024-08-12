@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+/* App.css파일에 box 스타일링을 해도 Hello.css 의 box 스타일이 적용됨 */
+.box {
+  width: 200px;
+  height: 100px;
+  background-color: black;
+}
