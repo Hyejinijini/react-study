@@ -1,7 +1,7 @@
 # react-study
 
 React 공부 기록용 입니다.
-강의: https://www.youtube.com/playlist?list=PLZKTXPmaJk8J_fHAzPLH8CJ_HO_M33e7-
+[강의](https://www.youtube.com/playlist?list=PLZKTXPmaJk8J_fHAzPLH8CJ_HO_M33e7-)
 <br>
 <br>
 
