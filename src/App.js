@@ -6,6 +6,7 @@ function App() {
   return (
     <div className="App">
       <Hello />
+      <h3>props: properties</h3>
       <div className={styles.box}>App-module</div>
       <div className="box">App</div>
     </div>
