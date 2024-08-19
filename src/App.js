@@ -1,14 +1,14 @@
 import "./assets/styles/app/App.css";
-import Hello from "./components/hello/Hello.js";
-import styles from "./assets/styles/app/App.module.css";
+import Header from "./components/header/Header";
+import Day from "./components/main/components/Day.js";
+import DayList from "./components/main/components/DayList.js";
 
 function App() {
   return (
     <div className="App">
-      <Hello />
-      <h3>props: properties</h3>
-      <div className={styles.box}>App-module</div>
-      <div className="box">App</div>
+      <Header />
+      <DayList />
+      <Day />
     </div>
   );
 }
