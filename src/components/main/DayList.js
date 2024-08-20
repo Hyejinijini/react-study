@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import dummy from "../../../db/data.json";
+import dummy from "../../db/data.json";
 
 export default function DayList() {
   console.log(dummy);
