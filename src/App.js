@@ -1,7 +1,7 @@
 import "./assets/styles/app/App.css";
 import Header from "./components/header/Header";
 import Day from "./components/main/components/Day.js";
-import DayList from "./components/main/components/DayList.js";
+import DayList from "./components/main/DayList.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EmptyPage from "./components/main/components/EmptyPage.js";
 
