@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-export default function Word({ word }) {
+export default function Word({ word: w }) {
+  const [word, setWord] = useState(w);
   const [isShow, setIsShow] = useState(false);
   const [isDone, setIsDone] = useState(word.isDone);
 
@@ -9,7 +10,54 @@ export default function Word({ word }) {
   }
 
   function toggleDone() {
-    setIsDone(!isDone);
+    // setIsDone(!isDone);
+    fetch(`http://localhost:3001/words/${word.id}`, {
+      // 요청의 옵션들
+      method: "PUT",
+      headers: {
+        // 컨텐트 타이은 보내는 리소스의 타입을 의미한다.
+        // json 형태로 보낼 것이기 때문에 json 이라고 입력
+        "Content-Type": "application/json",
+      },
+      // 단순히 데이터를 가져오는 GET 과는 다르게 PUT 은 수정을 위한 정보들을 body 에 실어서 보내줘야 함
+      // JSON 문자열로 변환하기 위해서 JSON.stringify 로 감싸줌
+      body: JSON.stringify({
+        // 기존 word 데이터에
+        ...word,
+        // isDint 만 바꿔서 입력
+        isDone: !isDone,
+      }),
+      // 응답을 받아서
+    }).then((res) => {
+      // 응답이 ok 라면
+      if (res.ok) {
+        // isDone 의 상태를 바꿈
+        setIsDone(!isDone);
+      }
+    });
+  }
+
+  function del() {
+    if (window.confirm("삭제 하시겠습니까?")) {
+      fetch(`http://localhost:3001/words/${word.id}`, {
+        method: "DELETE",
+        // confirm 창에서 확인을 누르고
+      }).then((res) => {
+        // ok 로 응답하면
+        if (res.ok) {
+          // 해당 word 데이터의 id 를 0으로 변경
+          // 코드에서 id 가 0으로 설정된 경우, 삭제된 것으로 간주하기 때문
+          setWord({ id: 0 });
+        }
+      });
+    }
+  }
+
+  // id 가 0 인 경우에 대해서 조건문 생성
+  if (word.id === 0) {
+    // setWord 가 변경되면 해당 컴포넌트 자체가 렌더링 되는데, 이때 null 을 return 하도록 하면 아무것도 화면에 그려지지 않는다.
+    // 즉, id 가 0인 경우는 화면에 안보이게 하겠다는 것.
+    return null;
   }
 
   return (
@@ -25,8 +73,15 @@ export default function Word({ word }) {
       <td>{isShow && word.kor}</td>
       <td>
         <button onClick={toggleShow}>뜻 {isShow ? "숨기기" : "보기"}</button>
-        <button className="btn_del">삭제</button>
+        <button onClick={del} className="btn_del">
+          삭제
+        </button>
       </td>
     </tr>
   );
 }
+
+// Create - POST
+// Read - GET
+// Update - PUT
+// Delete - DELETE
