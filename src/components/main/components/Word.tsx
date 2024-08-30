@@ -1,6 +1,21 @@
+import React from "react";
+
 import { useState } from "react";
 
-export default function Word({ word: w }) {
+interface Ipros {
+  word: Iword;
+}
+
+// export 해주면 다른 파일에서도 해당 interface 사용 가능
+export interface Iword {
+  day: string;
+  eng: string;
+  kor: string;
+  isDone: boolean;
+  id: number;
+}
+
+export default function Word({ word: w }: Ipros) {
   const [word, setWord] = useState(w);
   const [isShow, setIsShow] = useState(false);
   const [isDone, setIsDone] = useState(word.isDone);
@@ -47,7 +62,7 @@ export default function Word({ word: w }) {
         if (res.ok) {
           // 해당 word 데이터의 id 를 0으로 변경
           // 코드에서 id 가 0으로 설정된 경우, 삭제된 것으로 간주하기 때문
-          setWord({ id: 0 });
+          setWord({ ...word, id: 0 });
         }
       });
     }
